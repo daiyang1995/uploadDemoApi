@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="rollingFile"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>../logs/tpa-bwf-api.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>../logs/tpa-bwf-api-%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>5</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<!-- project default level -->
+	<logger name="com.qucai" level="DEBUG" />
+	<logger name="org.springframework" level="error" />
+	<logger name="com.mchange" level="error" />
+	<logger name="org.apache.http" level="error" />
+
+	<root>
+		<!-- 生产配置 -->
+		<!-- <level value="error" /> -->
+		<!-- <level value="info" /> -->
+		<!-- 测试配置 -->
+		<level value="debug" />
+		<appender-ref ref="console" />
+		<appender-ref ref="rollingFile" />
+	</root>
+
+</configuration>

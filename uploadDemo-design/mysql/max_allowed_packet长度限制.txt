@@ -1,0 +1,23 @@
+#在MySQL配置文件(my.ini)中默认无该配置项，使用默认值时，值为1048576（1024*1024），可在客户端执行下列语句修改：
+
+#SET GLOBAL max_allowed_packet = 2*1024*1024*10;
+
+#该语句执行后重启客户端即可用语句：
+
+#show variables like "max_allowed_packet";  
+
+#查看到已经修改成功，该语句在执行后，mysql重启前一直有作用，但mysql一旦重启，则会恢复默认的设置值。
+
+
+#要彻底修改，在MySQL配置文件(my.ini)中加上
+
+max_allowed_packet = -1  # -1为最大值或填入你要的最大长度
+#并重启mysql
+
+#在客户端执行语句：
+
+#show variables like "max_allowed_packet";  
+
+#如果为自己修改的值或4294967295（设置为-1时）则修改正确。
+
+#插入200W条测试数据，设置max_allowed_packet = 2*1024*1024*10，消耗时间为：11:24:06 11:25:06!

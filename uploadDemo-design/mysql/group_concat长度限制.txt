@@ -1,0 +1,28 @@
+#在MySQL配置文件(my.ini)中默认无该配置项，使用默认值时，值为1024，可在客户端执行下列语句修改：
+
+#set global group_concat_max_len = 1024;
+
+#该语句执行后重启客户端即可用语句：
+
+#show global variables like "group_concat_max_len";  
+
+#查看到已经修改成功，该语句在执行后，mysql重启前一直有作用，但mysql一旦重启，则会恢复默认的设置值。
+
+
+#要彻底修改，在MySQL配置文件(my.ini)中加上
+
+group_concat_max_len = -1  # -1为最大值或填入你要的最大长度
+#并重启mysql
+
+#在客户端执行语句：
+
+#show global variables like "group_concat_max_len";  
+
+#如果为自己修改的值或4294967295（设置为-1时）则修改正确。
+
+#这里一个容易把人搞蒙的地方是如果查询时使用的是show variables的话，会发现设置好像并没有生效，
+#这是因为单纯使用show variables的话就等同于使用的是show session variables，查询的是会话变量，
+#只有使用show global variables，查询的才是全局变量。
+
+#网络上很多人都抱怨说他们set global之后使用show variables查询没有发现改变，原因就在于混淆了会话变量和全局变量，
+#如果仅仅想修改会话变量的话，可以使用类似set wait_timeout=10;或者set session wait_timeout=10;这样的语法。

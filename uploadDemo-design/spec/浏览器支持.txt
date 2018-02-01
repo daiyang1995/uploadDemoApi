@@ -1,0 +1,11 @@
+浏览器必须支持Html5技术，具体如下：
+MS IE 10+
+MS Edge
+
+Google Chrome v56+（推荐）
+Firfox v47+
+
+Chromium（Google Chrome开源版本）
+
+360浏览器最新版（Chromium45/ie8双内核）
+QQ浏览器9（Chromium53/ie9双内核）
